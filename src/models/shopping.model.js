@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db/dataBase.js';
 import { detail_shopping } from './detail_shopping.model.js';
-import { supplier } from './supplier.model.js';
 
 export const shopping = sequelize.define('COMPRAS', {
     ID_COMPRAS: {
@@ -21,7 +20,7 @@ export const shopping = sequelize.define('COMPRAS', {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
         required: true
-    }
+    },
 });
 
 shopping.hasMany(detail_shopping, {
@@ -30,16 +29,6 @@ shopping.hasMany(detail_shopping, {
 })
 
 detail_shopping.belongsTo(shopping, {
-    foreignKey: 'ID_COMPRAS',
-    targetId: 'ID_COMPRAS'
-})
-
-shopping.hasMany(supplier, {
-    foreignKey: 'ID_COMPRAS',
-    sourceKey: 'ID_COMPRAS'
-})
-
-supplier.belongsTo(shopping, {
     foreignKey: 'ID_COMPRAS',
     targetId: 'ID_COMPRAS'
 })

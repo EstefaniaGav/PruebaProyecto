@@ -1,8 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db/dataBase.js';
 import { shopping } from './shopping.model.js';
-import { detail_shopping } from './detail_shopping.model.js';
-
 
 export const supplier = sequelize.define('PROVEEDORES', {
     ID_PROVEEDOR: {
@@ -10,6 +8,16 @@ export const supplier = sequelize.define('PROVEEDORES', {
         primaryKey: true,
         autoIncrement: true
     },
+    
+    Cedula: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: 'La cedula es requerida'
+            }},
+    },
+    
     Nombre: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -33,16 +41,21 @@ export const supplier = sequelize.define('PROVEEDORES', {
 
     Telefono: {
         type: DataTypes.INTEGER,
-        required: true
+        allowNull: false
     },
     Email: {
         type: DataTypes.STRING,
-        required: true
+        allowNull: false
     },
     Ciudad: {
         type: DataTypes.STRING,
-        required: true
-    }
+        allowNull: false
+    },
+    Estado: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        allowNull: false
+    },
 });
 
 supplier.hasMany(shopping, {

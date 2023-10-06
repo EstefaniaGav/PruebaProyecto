@@ -16,3 +16,4 @@ export const detail_shopping = sequelize.define('DETALLE_COMPRAS', {
         required: true
     }
 });
+

@@ -10,6 +10,7 @@ export const supplies = sequelize.define('INSUMOS', {
     },
     Nombre_Insumo: {
         type: DataTypes.STRING,
+        allowNull: false,
         required: true,
         validate: {
             notNull: {
@@ -53,7 +54,9 @@ detail_shopping.belongsTo(supplies, {
     targetId: 'ID_INSUMOS'
 })
 
-supplies.hasMany(recipe, {
+
+
+/* supplies.hasMany(recipe, {
     foreignKey: 'ID_INSUMOS',
     sourceKey: 'ID_INSUMOS'
 })
@@ -61,4 +64,4 @@ supplies.hasMany(recipe, {
 recipe.belongsTo(supplies, {
     foreignKey: 'ID_INSUMOS',
     targetId: 'ID_INSUMOS'
-})
+}) */
